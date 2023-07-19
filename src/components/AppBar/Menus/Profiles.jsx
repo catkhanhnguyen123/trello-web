@@ -1,13 +1,15 @@
 import React from 'react'
 import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import Divider from '@mui/material/Divider'
-import ListItemText from '@mui/material/ListItemText'
 import ListItemIcon from '@mui/material/ListItemIcon'
-import Check from '@mui/icons-material/Check'
 import Avatar from '@mui/material/Avatar'
+import Tooltip from '@mui/material/Tooltip'
+import IconButton from '@mui/material/IconButton'
+import Settings from '@mui/icons-material/Settings'
+import Logout from '@mui/icons-material/Logout'
+import PersonAdd from '@mui/icons-material/PersonAdd'
 
 function Profiles() {
   const [anchorEl, setAnchorEl] = React.useState(null)
@@ -21,18 +23,19 @@ function Profiles() {
 
   return (
     <Box>
-      <Button
-        id="basic-button-profiles"
-        aria-controls={open ? 'basic-menu-profiles' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        onClick={handleClick}
-      >
-        <Avatar
-          sx={{ width: 32, height: 32 }}
-          src=''
-        />
-      </Button>
+      <Tooltip title="Account settings">
+        <IconButton
+          onClick={handleClick}
+          size="small"
+          sx={{ padding: 0 }}
+          aria-controls={open ? 'basic-menu-profiles' : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? 'true' : undefined}
+        >
+          <Avatar sx={{ width: 32, height: 32 }}
+            src='https://www.tor.com/wp-content/uploads/2014/12/Hunger-Games-Katniss-pin.jpg'/>
+        </IconButton>
+      </Tooltip>
       <Menu
         id="basic-menu-profiles"
         aria-labelledby="basic-button-profiles"
@@ -49,30 +52,29 @@ function Profiles() {
         }}
       >
         <MenuItem>
-          <ListItemText inset>Single</ListItemText>
+          <Avatar sx={{ width: 28, height: 28, mr: 2 }} /> Profile
         </MenuItem>
         <MenuItem>
-          <ListItemText inset>1.15</ListItemText>
+          <Avatar sx={{ width: 28, height: 28, mr: 2 }} /> My account
         </MenuItem>
+        <Divider />
         <MenuItem>
-          <ListItemText inset>Double</ListItemText>
+          <ListItemIcon>
+            <PersonAdd fontSize="small" />
+          </ListItemIcon>
+          Add another account
         </MenuItem>
         <MenuItem>
           <ListItemIcon>
-            <Check />
+            <Settings fontSize="small" />
           </ListItemIcon>
-          Custom: 1.2
-        </MenuItem>
-        <Divider />
-        <MenuItem>
-          <ListItemText>Add space before paragraph</ListItemText>
+          Settings
         </MenuItem>
         <MenuItem>
-          <ListItemText>Add space after paragraph</ListItemText>
-        </MenuItem>
-        <Divider />
-        <MenuItem>
-          <ListItemText>Custom spacing...</ListItemText>
+          <ListItemIcon>
+            <Logout fontSize="small" />
+          </ListItemIcon>
+          Logout
         </MenuItem>
       </Menu>
     </Box>
